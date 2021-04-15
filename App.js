@@ -1,21 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, LogBox } from "react-native";
+import { Container } from 'native-base';
+import * as Font from 'expo-font';
+import Login from "./src/screens/Login";
+import Chat from "./src/screens/Chat";
+
+LogBox.ignoreAllLogs(true);
 
 export default function App() {
+
+  const [userName, setUserName] = useState(null)
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Container style={styles.container}>
+    {!userName ? <Login setUserName={setUserName} /> :  <Chat userName={userName} /> }
+  </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  container:{
+    backgroundColor:'#16202b'
+  }
+})
+
+
+
